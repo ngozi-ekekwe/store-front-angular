@@ -14,7 +14,9 @@ import { CardComponent } from './components/card/card.component';
   ],
   providers: [],
   exports: [
-    
+    HeaderComponent,
+    FooterComponent,
+    CardComponent
   ]
 })
 

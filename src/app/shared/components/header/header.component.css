@@ -9,23 +9,52 @@ header {
 
 .left {
   background-color: #dfbeb1;
-  padding: 2rem 0;
+  padding: 0.8rem 0;
+  font-weight: bold;
+  text-align: center;
   width: 50%;
 
 }
 
 .right{
   background-color: #e1dce3;
-  padding: 2rem 0;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.8rem 0;
   width: 50%;
+}
+
+.left, .right {
+  font-size: 1rem;
 }
 
 .second-header {
   background-color: #000;
+  display: flex;
+  justify-content: space-between;
   color: white;
-  padding: 2rem 0;
+  padding: 1.5rem 10rem;
+}
+
+.second-header a {
+  color: white;
+  text-decoration: none;
+  
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+  padding: 0 1rem;
 }
 
 .third-header {
-
+  background-color: #eadad3;
+  padding: 1rem 0;
+  text-align: center;
 }

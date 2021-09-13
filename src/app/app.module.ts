@@ -7,6 +7,9 @@ import { PrdouctDetailComponent } from './modules/prdouct-detail/prdouct-detail.
 import { CartComponent } from './modules/cart/cart.component';
 import { SuccessPageComponent } from './modules/success-page/success-page.component';
 import { AppRoutingModule } from './app-routing.module';
+import {SharedModule} from './shared/shared.module';
+import { ProductsComponent } from './modules/products/products.component';
+
 
 
 @NgModule({
@@ -15,10 +18,12 @@ import { AppRoutingModule } from './app-routing.module';
     HomeComponent,
     PrdouctDetailComponent,
     CartComponent,
-    SuccessPageComponent
+    SuccessPageComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AppRoutingModule
   ],
   providers: [],
