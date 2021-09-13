@@ -1,0 +1,31 @@
+header {
+  background-color: #fff;
+}
+
+.first-header {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  background-color: #dfbeb1;
+  padding: 2rem 0;
+  width: 50%;
+
+}
+
+.right{
+  background-color: #e1dce3;
+  padding: 2rem 0;
+  width: 50%;
+}
+
+.second-header {
+  background-color: #000;
+  color: white;
+  padding: 2rem 0;
+}
+
+.third-header {
+
+}
