@@ -1,0 +1,41 @@
+article {
+  width: 33.33%;
+}
+
+article img {
+  width: 100%;
+  height: 500px
+}
+
+.card-details {
+  text-align: center;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-details button {
+  background: white;
+  color: black;
+  border: none;
+  outline: none;
+  border: 1px solid lavender;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+span {
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  padding: 0.4rem 0;
+}
+
+select {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid lavender;
+}
