@@ -1,12 +1,10 @@
 <article>
   <div class="box">
-    <img src="../../../../assets/cover.jpg" alt="">
+    <img [src]="product.url" alt="">
     <div class="card-details">
-      <span>COMESTICS</span>
-      <h1>$16,00</h1>
-      <select name="" id="">
-        <option value="">1</option>
-      </select>
+      <span>{{ product.name }}</span>
+      <h1>${{product.price}}</h1>
+      <p>{{product.description}}</p>
       <button>QUICK SHOP</button>
     </div>
   </div>

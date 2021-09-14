@@ -66,6 +66,12 @@ h1 {
   padding: 1rem 0;
 }
 
+h3 {
+  font-weight: bold;
+  color: #767676;
+  font-size: 1.2rem;
+}
+
 p {
   text-align: center;
   padding: 1rem 0;
@@ -80,4 +86,15 @@ p {
 .section h2 {
   font-weight: bold;
   font-size: 2rem;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-list > div {
+  width: calc((100% - (20px * 3)) / 3);
+  margin: 0 10px;
+  margin-bottom: 2.5rem;
 }
