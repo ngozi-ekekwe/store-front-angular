@@ -1,2 +1,12 @@
 <app-header></app-header>
-<p>products works!</p>
+<div>
+  <section class="container">
+    <div class="section">
+      <div class="product-list">
+        <div *ngFor="let product of products">
+          <app-card [product]="product"></app-card>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
