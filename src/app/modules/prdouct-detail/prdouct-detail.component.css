@@ -1,0 +1,29 @@
+.product-image {
+  height: 400px;
+  width: 400px;
+}
+
+.product-details {
+  margin: 3rem auto;
+  display: flex;
+
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.details {
+  margin-left: 3rem;
+}
+
+.details h1 {
+  font-size: 3rem;
+}
+
+.details h2 {
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  color: green;
+}
