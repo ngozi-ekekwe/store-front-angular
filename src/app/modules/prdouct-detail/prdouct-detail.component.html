@@ -5,14 +5,26 @@
       <img [src]="product.url" alt="" />
     </div>
     <div class="details">
-      <h1>
-        {{ product.name }}
-      </h1>
+      <div>
+        <h1>
+          {{ product.name }}
+        </h1>
+      </div>
       <h2>{{ product.description }}</h2>
-      <span>{{ product.price }}</span>
+      <div>
+        <span>Amount :</span>
+        <span>{{ product.price }}</span>
+      </div>
 
-      <!-- when do you use emit on a button?????? -->
+      <div><span>Quantity :</span><select type="number" value="0" [(ngModel)]="quantity">
+        <option *ngFor="let qty of quantityList">{{ qty }}</option>
+      </select></div>
+
+      <div>
+        <button (click)="addToCart(product)">ADD TO CART</button>
+      </div>
     </div>
   </div>
+
   
 </div>

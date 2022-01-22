@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
+import { Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-prdouct-detail',
@@ -9,6 +11,11 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class PrdouctDetailComponent implements OnInit {
   public id: string | null = null;
+
+  quantity: number = 1;
+
+  quantityList : number[] = [1,2,3,4,5,6,7,8,9,10]
+
 
   product: any = {
     description: '',
@@ -25,10 +32,26 @@ export class PrdouctDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    // let product = this.productService.getProduct(this.id);
-    // if(product?.id) {
-    //   this.product = product;
-    // }
+    this.productService.getProduct(this.id).subscribe((p) => {
+      this.product = p
+    });
+  }
+
+  addToCart(item: any) {
+    item.quantity = this.quantity;
+    let cart =localStorage.getItem('cart')
+    if(cart) {
+      const cartArray = JSON.parse(cart);
+      cartArray.push(item);
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }else {
+      const cartArray = [];
+      cartArray.push(item);
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }  
+  }
+
+  removeItemFromCart(id:any) {
 
   }
 }

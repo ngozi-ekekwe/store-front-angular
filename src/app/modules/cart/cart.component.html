@@ -1,2 +1,37 @@
 <app-header></app-header>
-<p>cart works!</p>
+<div class="cart-page">
+  <div class="cart-page-details">
+    <div>
+      <div class="total-amount"><span>Total Amount: {{ total }}</span></div>
+
+      <div class="product-details" *ngFor="let product of cartItems">
+        <div class="product-image">
+          <img [src]="product.url" alt="" />
+        </div>
+        <div class="details">
+          <div>
+            <h1>{{ product.name }}</h1>
+          </div>
+          <h2>{{ product.description }}</h2>
+          <div>
+            <span>Amount :</span>
+            <span>{{ product.price }}</span>
+          </div>
+
+          <div><span>Quantity :</span>{{ product.quantity }}</div>
+
+          <button class="">remove item</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1">
+      <form  (ngSubmit)="submitForm()" #form="ngForm">
+        <input type="text" required placeholder="Full name" ([ngModel])="fullname"  />
+        <input type="text" required placeholder="Address"  ([ngModel])="address" />
+        <input type="text" required placeholder="Credit Card Number" ([ngModel])="creditCard"  />
+        <button class="submit-button" type="submit" [disabled]="form.invalid">Complete Payment</button>
+      </form>
+      <span>*We'll never expose your credentials*</span>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import { SuccessPageComponent } from './modules/success-page/success-page.compon
 import { AppRoutingModule } from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import { ProductsComponent } from './modules/products/products.component';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -26,7 +27,8 @@ import { ProductsComponent } from './modules/products/products.component';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
