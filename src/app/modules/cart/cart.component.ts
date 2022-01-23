@@ -28,9 +28,31 @@ export class CartComponent implements OnInit {
     }
 
     this.total = this.total.toFixed(2);
-
-    console.log(this.fullname, this.creditCard, this.address)
   }
+
+  getShoppingCart() {
+    let cart = localStorage.getItem('cart');
+    if(cart) {
+      return JSON.parse(cart);
+    }else {
+      return [];
+    }
+  }
+
+  removeItemFromCart(id:any) {
+    let cart =localStorage.getItem('cart');
+    if(cart) {
+      const cartArray = JSON.parse(cart);
+      for(let i = 0; i < cartArray.length; i++) {
+        if(cartArray[i].id === id) {
+          cartArray.splice(i, 1);
+        }
+      }
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }
+  }
+
+
 
   submitForm() {
     alert("hello")

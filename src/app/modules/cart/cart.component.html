@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="cart-page">
-  <div class="cart-page-details">
+  <div class="cart-page-details" *ngIf="cartItems.length > 0">
     <div>
       <div class="total-amount"><span>Total Amount: {{ total }}</span></div>
 
@@ -20,7 +20,7 @@
 
           <div><span>Quantity :</span>{{ product.quantity }}</div>
 
-          <button class="">remove item</button>
+          <button class="" (click)="removeItemFromCart(product.id)">remove item</button>
         </div>
       </div>
     </div>
@@ -32,6 +32,15 @@
         <button class="submit-button" type="submit" [disabled]="form.invalid">Complete Payment</button>
       </form>
       <span>*We'll never expose your credentials*</span>
+    </div>
+  </div>
+
+  <div *ngIf="cartItems.length === 0">
+   
+    <div class="empty-cart">
+      <h1>YOUR CART</h1>
+      <h2>Your cart is empty</h2>
+      <h2>Please add some items to your cart <a routerLink="/products">continue shopping</a></h2>
     </div>
   </div>
 </div>

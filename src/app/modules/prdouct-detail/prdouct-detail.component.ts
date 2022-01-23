@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
-import { Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +27,8 @@ export class PrdouctDetailComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,21 +38,37 @@ export class PrdouctDetailComponent implements OnInit {
     });
   }
 
+  checkIfProductExistsInCart(item :any, cart : any) {
+    for(let i = 0; i < cart.length; i++) {
+      if(cart[i].id === item.id) {
+        return true
+      }
+    }
+    return false;
+  }
+
   addToCart(item: any) {
     item.quantity = this.quantity;
     let cart =localStorage.getItem('cart')
     if(cart) {
       const cartArray = JSON.parse(cart);
-      cartArray.push(item);
+      if(this.checkIfProductExistsInCart(item, cartArray)) {
+        for(let i = 0; i < cartArray.length; i++) {
+          if(cartArray[i].id === item.id) {
+            cartArray[i].quantity = Number(item.quantity) + Number(cartArray[i].quantity);
+          }
+        }
+      }else{
+        cartArray.push(item);
+      }
       localStorage.setItem('cart', JSON.stringify(cartArray));
     }else {
       const cartArray = [];
       cartArray.push(item);
       localStorage.setItem('cart', JSON.stringify(cartArray));
-    }  
-  }
-
-  removeItemFromCart(id:any) {
+    } 
+    alert(`${item.name} has been added to cart`)
+    this.router.navigate(['/','cart']);
 
   }
 }
