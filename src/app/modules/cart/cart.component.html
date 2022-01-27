@@ -5,7 +5,9 @@
   </div>
   <div class="cart-page-details" *ngIf="cartItems.length > 0">
     <div>
-      <div class="total-amount"><span>Total Amount: {{ total }}</span></div>
+      <div class="total-amount">
+        <span>Total Amount: ${{ total }}</span>
+      </div>
 
       <div class="product-details" *ngFor="let product of cartItems">
         <div class="product-image">
@@ -21,34 +23,70 @@
             <span>{{ product.quantity }} x ${{ product.price }}</span>
           </div>
 
-          <button class="" (click)="removeItemFromCart(product.id)">remove item</button>
+          <button class="" (click)="removeItemFromCart(product.id)">
+            remove item
+          </button>
         </div>
       </div>
     </div>
     <div class="flex-1">
-      <form  (ngSubmit)="submitForm()" #form="ngForm">
-
+      <form (ngSubmit)="submitForm()" #form="ngForm">
         <label for="fullname">Full Name*</label>
-        
-        <input type="text" required placeholder="Enter your first and last name" [(ngModel)]="fullname" name="fullname"  />
+        <div class="alert alert-danger" *ngIf="errorStatus.fullName.status">
+          <div>{{errorStatus.fullName.message}}</div>
+        </div>
+        <input
+          type="text"
+          required
+          placeholder="Enter your first and last name"
+          [(ngModel)]="fullname"
+          name="fullname"
+          (ngModelChange)="validateName($event)"
+        />
 
         <label for="address">Address *</label>
-        <input type="text" required placeholder="Address"  [(ngModel)]="address" name="address"  />
+        <div class="alert alert-danger" *ngIf="errorStatus.address.status">
+          <div>{{errorStatus.address.message}}</div>
+        </div>
+        <input
+          type="text"
+          required
+          placeholder="Address"
+          [(ngModel)]="address"
+          name="address"
+          (ngModelChange)="validateAddress($event)"
+        />
 
         <label for="creditCard">Credit Card Number (12 digit number) *</label>
-        <input type="text" required placeholder="Enter Your Credit Information" minlength="12" [(ngModel)]="creditCard" name="creditCard" pattern="[\d]*"  />
-        
-        <button class="submit-button" type="submit" [disabled]="form.invalid">Complete Payment</button>
+        <div class="alert alert-danger" *ngIf="errorStatus.creditCard.status">
+          <div>{{errorStatus.creditCard.message}}</div>
+        </div>
+        <input
+          type="text"
+          required
+          placeholder="Enter Your Credit Information"
+          minlength="12"
+          [(ngModel)]="creditCard"
+          name="creditCard"
+          (ngModelChange)="validateCreditCard($event)"
+          pattern="[\d]*"
+        />
+
+        <button class="submit-button" type="submit" [disabled]="form.invalid">
+          Complete Payment
+        </button>
       </form>
       <span>*We'll never expose your credentials*</span>
     </div>
   </div>
 
   <div *ngIf="cartItems.length === 0">
-   
     <div class="empty-cart">
       <h2>Your cart is empty</h2>
-      <h2>Please add some items to your cart <a routerLink="/products">continue shopping</a></h2>
+      <h2>
+        Please add some items to your cart
+        <a routerLink="/products">continue shopping</a>
+      </h2>
     </div>
   </div>
 </div>

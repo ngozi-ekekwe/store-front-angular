@@ -49,6 +49,7 @@ export class CartService {
         }
       }
       this.cartItems = cart;
+      alert("Item removed from cart")
       localStorage.setItem('cart', JSON.stringify(this.cartItems));
     }
   }
