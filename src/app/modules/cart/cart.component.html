@@ -1,5 +1,8 @@
 <app-header></app-header>
 <div class="cart-page">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+  </div>
   <div class="cart-page-details" *ngIf="cartItems.length > 0">
     <div>
       <div class="total-amount"><span>Total Amount: {{ total }}</span></div>
@@ -15,10 +18,8 @@
           <h2>{{ product.description }}</h2>
           <div>
             <span>Amount :</span>
-            <span>{{ product.price }}</span>
+            <span>{{ product.quantity }} x ${{ product.price }}</span>
           </div>
-
-          <div><span>Quantity :</span>{{ product.quantity }}</div>
 
           <button class="" (click)="removeItemFromCart(product.id)">remove item</button>
         </div>
@@ -38,7 +39,6 @@
   <div *ngIf="cartItems.length === 0">
    
     <div class="empty-cart">
-      <h1>YOUR CART</h1>
       <h2>Your cart is empty</h2>
       <h2>Please add some items to your cart <a routerLink="/products">continue shopping</a></h2>
     </div>

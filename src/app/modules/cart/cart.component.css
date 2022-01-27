@@ -125,3 +125,18 @@ a {
 button {
   cursor: pointer;
 }
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.cart-header h2 {
+  font-size: 2rem;
+  margin: 0;
+
+  font-weight: bold;
+}
