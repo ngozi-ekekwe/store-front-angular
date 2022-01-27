@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="cart-page">
   <div class="cart-header">
     <h2>Your Cart</h2>
@@ -26,9 +27,17 @@
     </div>
     <div class="flex-1">
       <form  (ngSubmit)="submitForm()" #form="ngForm">
-        <input type="text" required placeholder="Full name" ([ngModel])="fullname"  />
-        <input type="text" required placeholder="Address"  ([ngModel])="address" />
-        <input type="text" required placeholder="Credit Card Number" ([ngModel])="creditCard"  />
+
+        <label for="fullname">Full Name*</label>
+        
+        <input type="text" required placeholder="Enter your first and last name" [(ngModel)]="fullname" name="fullname"  />
+
+        <label for="address">Address *</label>
+        <input type="text" required placeholder="Address"  [(ngModel)]="address" name="address"  />
+
+        <label for="creditCard">Credit Card Number (12 digit number) *</label>
+        <input type="text" required placeholder="Enter Your Credit Information" minlength="12" [(ngModel)]="creditCard" name="creditCard" pattern="[\d]*"  />
+        
         <button class="submit-button" type="submit" [disabled]="form.invalid">Complete Payment</button>
       </form>
       <span>*We'll never expose your credentials*</span>

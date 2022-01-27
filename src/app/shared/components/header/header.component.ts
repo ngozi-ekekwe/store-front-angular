@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +10,12 @@ export class HeaderComponent implements OnInit {
 
   cartItems : any
 
-  constructor() { }
+  constructor(
+    private cartService : CartService
+  ) { }
 
   ngOnInit(): void {
-    const cart = localStorage.getItem('cart');
-    if(cart) {
-      this.cartItems = JSON.parse(cart);
-    }else{
-      this.cartItems = [];
-    }
+    this.cartItems = this.cartService.getCartItem();
   }
 
 }

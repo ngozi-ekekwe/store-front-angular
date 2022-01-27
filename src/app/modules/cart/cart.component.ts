@@ -1,62 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartItems : any
-  total : any;
+  cartItems: any;
+  total: any;
 
   fullname: string = '';
-  address : string = '';
-  creditCard : string = ''
+  address: string = '';
+  creditCard: string = '';
 
-  constructor() { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.total = 0
-    const cart = localStorage.getItem('cart');
-    if(cart) {
-      this.cartItems = JSON.parse(cart);
-    }else{
-      this.cartItems = [];
-    }
-    for(let i = 0; i < this.cartItems.length; i++) {
-      this.total += (this.cartItems[i].price * this.cartItems[i].quantity);
-    }
-
-    this.total = this.total.toFixed(2);
+    this.cartItems = this.cartService.getCartItem();
+    this.total = this.cartService.getTotalPrice();
   }
 
-  getShoppingCart() {
-    let cart = localStorage.getItem('cart');
-    if(cart) {
-      return JSON.parse(cart);
-    }else {
-      return [];
-    }
+  removeItemFromCart(id: any) {
+    this.cartService.removeItemFromCart(id);
+    this.cartItems = this.cartService.getCartItem();
   }
-
-  removeItemFromCart(id:any) {
-    let cart =localStorage.getItem('cart');
-    if(cart) {
-      const cartArray = JSON.parse(cart);
-      for(let i = 0; i < cartArray.length; i++) {
-        if(cartArray[i].id === id) {
-          cartArray.splice(i, 1);
-        }
-      }
-      localStorage.setItem('cart', JSON.stringify(cartArray));
-    }
-  }
-
-
 
   submitForm() {
-    alert("hello")
+    const user = {
+      fullName: this.fullname,
+      shippingAddress: this.address,
+      creditCard: this.creditCard,
+    };
+    this.cartService.completeOrder(user)
   }
-
-
 }

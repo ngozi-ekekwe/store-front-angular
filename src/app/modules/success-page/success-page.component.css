@@ -1,0 +1,22 @@
+.order-success-page {
+  width: 700px;
+  margin: auto;
+  padding: 20px
+}
+
+h2 {
+  color: green;
+  font-size: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+
+}
+
+h3 {
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}

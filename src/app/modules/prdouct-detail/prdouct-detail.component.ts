@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
+import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
+import Product from 'src/app/models/Product';
 
 
 @Component({
@@ -17,16 +19,11 @@ export class PrdouctDetailComponent implements OnInit {
   quantityList : number[] = [1,2,3,4,5,6,7,8,9,10]
 
 
-  product: any = {
-    description: '',
-    id: '',
-    name: '',
-    price: 0,
-    url: '',
-  };
+  product: Product = new Product()
 
   constructor(
     private productService: ProductsService,
+    private cartService : CartService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -34,41 +31,13 @@ export class PrdouctDetailComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(this.id).subscribe((p) => {
-      this.product = p
+      this.product = (p as unknown ) as Product;
     });
   }
 
-  checkIfProductExistsInCart(item :any, cart : any) {
-    for(let i = 0; i < cart.length; i++) {
-      if(cart[i].id === item.id) {
-        return true
-      }
-    }
-    return false;
-  }
-
-  addToCart(item: any) {
-    item.quantity = this.quantity;
-    let cart =localStorage.getItem('cart')
-    if(cart) {
-      const cartArray = JSON.parse(cart);
-      if(this.checkIfProductExistsInCart(item, cartArray)) {
-        for(let i = 0; i < cartArray.length; i++) {
-          if(cartArray[i].id === item.id) {
-            cartArray[i].quantity = Number(item.quantity) + Number(cartArray[i].quantity);
-          }
-        }
-      }else{
-        cartArray.push(item);
-      }
-      localStorage.setItem('cart', JSON.stringify(cartArray));
-    }else {
-      const cartArray = [];
-      cartArray.push(item);
-      localStorage.setItem('cart', JSON.stringify(cartArray));
-    } 
+  addItemToCart(item: Product) {
+    this.cartService.addToCart(item, this.quantity); 
     alert(`${item.name} has been added to cart`)
     this.router.navigate(['/','cart']);
-
   }
 }

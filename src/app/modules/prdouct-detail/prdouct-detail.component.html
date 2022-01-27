@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
   <div *ngIf="product.id" class="product-details">
     <div class="product-image">
@@ -24,7 +25,7 @@
 
         <!-- <button>CONTINUE SHOPPING</button> -->
 
-        <button (click)="addToCart(product)">ADD ITEM TO CART</button>
+        <button (click)="addItemToCart(product)">ADD ITEM TO CART</button>
       </div>
     </div>
   </div>

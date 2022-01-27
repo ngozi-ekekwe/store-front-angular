@@ -16,6 +16,7 @@ form {
 
 button {
   margin: 1rem 0;
+  width: 100%;
   background-color: lavenderblush;
   padding: 0.5rem 1rem;
   border: 0
@@ -30,6 +31,7 @@ button {
   border-radius: 0.2rem;
   border: 0;
   cursor: pointer;
+  width: 100%;
   text-transform: uppercase;
 }
 
@@ -139,4 +141,9 @@ button {
   margin: 0;
 
   font-weight: bold;
+}
+
+label {
+  font-weight: bold;
+  padding: 0.5rem 0;
 }
