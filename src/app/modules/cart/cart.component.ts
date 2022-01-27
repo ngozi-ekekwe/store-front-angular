@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import Product from 'src/app/models/Product';
 
 @Component({
   selector: 'app-cart',
@@ -7,6 +8,8 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  @Output() remove: EventEmitter<number> = new EventEmitter
+
   cartItems: any;
   total: any;
 
@@ -37,6 +40,7 @@ export class CartComponent implements OnInit {
   }
 
   removeItemFromCart(id: any) {
+    this.remove.emit(id);
     this.cartService.removeItemFromCart(id);
     this.cartItems = this.cartService.getCartItem();
   }

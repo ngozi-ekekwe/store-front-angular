@@ -34,7 +34,7 @@ export class CartService {
     let cart = this.getCartItem()
     if (cart.length > 0) {
       cart.forEach((item: any) => {
-        this.totalPrice += item.price * item.quantity;
+        this.totalPrice += Number(item.price) * Number(item.quantity);
       });
     }
     return this.totalPrice.toFixed(2)
