@@ -43,6 +43,7 @@ export class CartComponent implements OnInit {
     this.remove.emit(id);
     this.cartService.removeItemFromCart(id);
     this.cartItems = this.cartService.getCartItem();
+    this.total = this.cartService.getTotalPrice();
   }
 
   submitForm() {

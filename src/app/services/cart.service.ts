@@ -18,7 +18,7 @@ export class CartService {
   getCartItem() {
     let cart = localStorage.getItem('cart') || '[]';
     this.cartItems = JSON.parse(cart);
-    return this.cartItems;
+    return JSON.parse(cart);
   }
 
   setCartItems() {
@@ -32,11 +32,14 @@ export class CartService {
 
   getTotalPrice() {
     let cart = this.getCartItem()
+    this.totalPrice = 0;
     if (cart.length > 0) {
       cart.forEach((item: any) => {
         this.totalPrice += Number(item.price) * Number(item.quantity);
+        console.log(this.totalPrice.toFixed(2), 'before')
       });
     }
+    console.log(this.totalPrice.toFixed(2), 'after')
     return this.totalPrice.toFixed(2)
   }
 
@@ -49,8 +52,9 @@ export class CartService {
         }
       }
       this.cartItems = cart;
+      console.log(this.cartItems, 'cart')
       alert("Item removed from cart")
-      localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      this.setCartItems()
     }
   }
 
